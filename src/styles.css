@@ -1,0 +1,408 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap");
+
+:root {
+  color-scheme: light;
+  --bg: #f4f8ff;
+  --panel: rgba(255, 255, 255, 0.78);
+  --panel-strong: rgba(255, 255, 255, 0.92);
+  --line: rgba(21, 54, 120, 0.12);
+  --line-strong: rgba(21, 54, 120, 0.2);
+  --ink: #112245;
+  --muted: #60739a;
+  --accent: #2259ff;
+  --accent-soft: rgba(34, 89, 255, 0.12);
+  --shadow: 0 24px 60px rgba(53, 88, 170, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, rgba(125, 171, 255, 0.24), transparent 28%),
+    radial-gradient(circle at top right, rgba(81, 202, 198, 0.18), transparent 30%),
+    linear-gradient(180deg, #eef5ff 0%, #f8fbff 100%);
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  min-height: 100vh;
+  gap: 22px;
+  padding: 22px;
+}
+
+.sidebar,
+.content-panel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+
+.sidebar {
+  border-radius: 28px;
+  padding: 18px;
+  position: sticky;
+  top: 22px;
+  max-height: calc(100vh - 44px);
+  overflow: auto;
+}
+
+.brand-panel {
+  padding: 20px;
+  border-radius: 24px;
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(14, 40, 108, 0.92), rgba(38, 101, 255, 0.9)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
+}
+
+.brand-kicker,
+.meta-label {
+  margin: 0 0 10px;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.76;
+}
+
+.brand-panel h1,
+.content-header h2 {
+  margin: 0;
+  font-family: "Manrope", "Noto Sans SC", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.brand-panel h1 {
+  font-size: 32px;
+  line-height: 1.05;
+}
+
+.brand-copy {
+  margin: 14px 0 0;
+  font-size: 14px;
+  line-height: 1.75;
+  opacity: 0.92;
+}
+
+.brand-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.brand-stats div {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.brand-stats strong {
+  display: block;
+  font-family: "Manrope", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.brand-stats span {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+.search-box {
+  display: block;
+  margin-top: 18px;
+}
+
+.search-box span {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.search-box input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: var(--panel-strong);
+  color: var(--ink);
+  outline: none;
+}
+
+.search-box input:focus {
+  border-color: rgba(34, 89, 255, 0.38);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+.note-tree {
+  margin-top: 18px;
+}
+
+.tree-group + .tree-group {
+  margin-top: 20px;
+}
+
+.tree-group h2 {
+  margin: 0 0 10px;
+  padding: 0 4px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.tree-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tree-item {
+  width: 100%;
+  text-align: left;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  padding: 14px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.tree-item:hover {
+  transform: translateY(-1px);
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.tree-item.active {
+  border-color: rgba(34, 89, 255, 0.24);
+  background: linear-gradient(180deg, rgba(34, 89, 255, 0.12), rgba(34, 89, 255, 0.05));
+}
+
+.tree-title,
+.tree-path {
+  display: block;
+}
+
+.tree-title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.tree-path {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.content-panel {
+  border-radius: 32px;
+  padding: 28px 34px 42px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.84)),
+    linear-gradient(180deg, rgba(86, 145, 255, 0.05), transparent);
+}
+
+.content-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.content-header h2 {
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.04;
+}
+
+.meta-path {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.source-link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: #15367b;
+  color: white;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+
+.markdown-body {
+  max-width: 860px;
+  margin: 30px auto 0;
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  font-family: "Manrope", "Noto Sans SC", sans-serif;
+  line-height: 1.16;
+  letter-spacing: -0.03em;
+}
+
+.markdown-body h1 {
+  font-size: 42px;
+  margin: 0 0 22px;
+}
+
+.markdown-body h2 {
+  font-size: 28px;
+  margin: 36px 0 14px;
+}
+
+.markdown-body h3 {
+  font-size: 22px;
+  margin: 28px 0 10px;
+}
+
+.markdown-body p,
+.markdown-body li {
+  color: #24395f;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 24px;
+}
+
+.markdown-body li + li {
+  margin-top: 6px;
+}
+
+.markdown-body code {
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(21, 54, 123, 0.08);
+  color: #12316d;
+  font-family: "SFMono-Regular", "Menlo", monospace;
+  font-size: 0.92em;
+}
+
+.markdown-body pre {
+  overflow: auto;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: #102449;
+  color: #eef5ff;
+}
+
+.markdown-body pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.markdown-body blockquote {
+  margin: 20px 0;
+  padding: 2px 0 2px 18px;
+  border-left: 4px solid rgba(34, 89, 255, 0.28);
+  color: #37507b;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+
+@media (max-width: 1080px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    max-height: none;
+  }
+
+  .content-panel {
+    padding: 24px;
+  }
+
+  .content-header {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .sidebar,
+  .content-panel {
+    border-radius: 24px;
+  }
+
+  .brand-panel h1 {
+    font-size: 28px;
+  }
+
+  .content-header h2 {
+    font-size: 28px;
+  }
+
+  .markdown-body {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+
+  .markdown-body h1 {
+    font-size: 32px;
+  }
+}
